@@ -5,12 +5,14 @@ from faker import Faker
 
 fake = Faker()
 
-menu = {
-        'home': 'Home',
-        'about': 'About',
-        'contact': 'Contact',
-        'add_article': 'Add article',
-        }
+menu = [{'title': 'Home', 'url_name': 'home'},
+        {'title': 'About', 'url_name': 'about'},
+        {'title': 'Blog', 'url_name': 'blog'},
+        {'title': 'Contact', 'url_name': 'contact'},
+        {'title': 'Login', 'url_name': 'login'},
+        {'title': 'Add post', 'url_name': 'add_post'}
+        ]
+
 
 data_db = [
     {'id': 1, 'title': 'First article', 'text': fake.paragraph(nb_sentences=50)},
@@ -45,3 +47,28 @@ def post(request, id):
 
 def page_not_found(request, exception):
     return HttpResponse('<h1>Page not found</h1>', status=404)
+
+
+def home(request):
+    data = {
+        'title': 'Blog',
+        'menu': menu,
+        'posts': data_db,
+    }
+    return render(request, 'blog/home.html', context=data)
+
+
+def about(request):
+    return HttpResponse("About")
+
+
+def contact(request):
+    return HttpResponse("Contact")
+
+
+def login(request):
+    return HttpResponse("Login")
+
+
+def add_post(request):
+    return HttpResponse("Add post")
