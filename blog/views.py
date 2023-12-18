@@ -39,8 +39,8 @@ def categories_by_slug(request, category_slug):
     return HttpResponse(f'<h1>{category_slug}</h1>')
 
 
-def post(request, post_slug):
-    return HttpResponse(f"{post_slug}")
+def post(request, id):
+    return HttpResponse(f"{id}")
 
 
 def page_not_found(request, exception):
