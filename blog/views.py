@@ -59,7 +59,7 @@ def home(request):
 
 
 def about(request):
-    return HttpResponse("About")
+    return render(request, 'blog/about.html', {'title': 'About', 'menu': menu})
 
 
 def contact(request):
