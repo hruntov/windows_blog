@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BLOG!</title>
+    <title>Blog</title>
 </head>
 <body>
-<h1>BLOG!</h1>
-{{ name }}
+<h1>{{ title }}</h1>
+
+<ul>
+    {% for post in posts %}
+    <li>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.text|truncatewords:50 }}</p>
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
 </body>
 </html>

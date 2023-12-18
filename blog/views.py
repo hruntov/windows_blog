@@ -1,12 +1,31 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from faker import Faker
+
+
+fake = Faker()
+
+menu = {
+        'home': 'Home',
+        'about': 'About',
+        'contact': 'Contact',
+        'add_article': 'Add article',
+        }
+
+data_db = [
+    {'id': 1, 'title': 'First article', 'text': fake.paragraph(nb_sentences=50)},
+    {'id': 2, 'title': 'Second article', 'text': fake.paragraph(nb_sentences=50)},
+    {'id': 3, 'title': 'Third article', 'text': fake.paragraph(nb_sentences=50)},
+]
 
 
 def blog(request):
-    context = {
-        'name': 'Kostiantyn Hruntotv'
+    data = {
+        'title': 'Blog',
+        'menu': menu,
+        'posts': data_db,
     }
-    return render(request, 'blog/blog.html', context)
+    return render(request, 'blog/blog.html', context=data)
 
 
 def categories(request, category_id):
